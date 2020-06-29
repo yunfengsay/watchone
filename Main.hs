@@ -8,6 +8,9 @@ import           Control.Monad             (forever, unless, void)
 import qualified Data.ByteString           as S
 import           Network.Socket
 import           Network.Socket.ByteString (recv, sendAll)
+import Data.Text.Lazy.Encoding
+import qualified Data.ByteString.Char8 as B
+
 
 main :: IO ()
 main = runTCPServer Nothing "8000" talk
@@ -15,12 +18,15 @@ main = runTCPServer Nothing "8000" talk
 		talk s = do
 			msg <- recv s 1024
 			unless (S.null msg) $ do
+				B.putStrLn msg
+				putStrLn $ show $ B.length msg
 				sendAll s msg
 				talk s
 
 runTCPServer:: Maybe HostName -> ServiceName -> (Socket -> IO a) -> IO a
 runTCPServer mhost port server = withSocketsDo $ do
 	addr <- resolve
+	putStrLn $ show addr
 	E.bracket (open addr) close loop
 	where
 		resolve = do

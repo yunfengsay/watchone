@@ -44,6 +44,17 @@
   (major1) == 3 && (major2) == 1 && (minor) <= 1)
 #endif /* MIN_VERSION_network */
 
+/* package text-1.2.4.0 */
+#ifndef VERSION_text
+#define VERSION_text "1.2.4.0"
+#endif /* VERSION_text */
+#ifndef MIN_VERSION_text
+#define MIN_VERSION_text(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 4)
+#endif /* MIN_VERSION_text */
+
 /* tool gcc-11.0.3 */
 #ifndef TOOL_VERSION_gcc
 #define TOOL_VERSION_gcc "11.0.3"

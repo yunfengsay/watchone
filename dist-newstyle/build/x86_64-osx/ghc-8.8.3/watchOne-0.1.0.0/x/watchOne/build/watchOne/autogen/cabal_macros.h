@@ -44,6 +44,17 @@
   (major1) == 3 && (major2) == 1 && (minor) <= 1)
 #endif /* MIN_VERSION_network */
 
+/* package raw-strings-qq-1.1 */
+#ifndef VERSION_raw_strings_qq
+#define VERSION_raw_strings_qq "1.1"
+#endif /* VERSION_raw_strings_qq */
+#ifndef MIN_VERSION_raw_strings_qq
+#define MIN_VERSION_raw_strings_qq(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  1 || \
+  (major1) == 1 && (major2) == 1 && (minor) <= 0)
+#endif /* MIN_VERSION_raw_strings_qq */
+
 /* package text-1.2.4.0 */
 #ifndef VERSION_text
 #define VERSION_text "1.2.4.0"
@@ -54,6 +65,28 @@
   (major1) == 1 && (major2) <  2 || \
   (major1) == 1 && (major2) == 2 && (minor) <= 4)
 #endif /* MIN_VERSION_text */
+
+/* package time-1.9.3 */
+#ifndef VERSION_time
+#define VERSION_time "1.9.3"
+#endif /* VERSION_time */
+#ifndef MIN_VERSION_time
+#define MIN_VERSION_time(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  9 || \
+  (major1) == 1 && (major2) == 9 && (minor) <= 3)
+#endif /* MIN_VERSION_time */
+
+/* package utf8-string-1.0.1.1 */
+#ifndef VERSION_utf8_string
+#define VERSION_utf8_string "1.0.1.1"
+#endif /* VERSION_utf8_string */
+#ifndef MIN_VERSION_utf8_string
+#define MIN_VERSION_utf8_string(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  0 || \
+  (major1) == 1 && (major2) == 0 && (minor) <= 1)
+#endif /* MIN_VERSION_utf8_string */
 
 /* tool gcc-11.0.3 */
 #ifndef TOOL_VERSION_gcc

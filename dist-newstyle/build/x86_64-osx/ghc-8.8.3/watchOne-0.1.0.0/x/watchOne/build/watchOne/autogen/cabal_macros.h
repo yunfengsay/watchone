@@ -66,6 +66,17 @@
   (major1) == 1 && (major2) == 2 && (minor) <= 4)
 #endif /* MIN_VERSION_text */
 
+/* package text-format-simple-1.1.0 */
+#ifndef VERSION_text_format_simple
+#define VERSION_text_format_simple "1.1.0"
+#endif /* VERSION_text_format_simple */
+#ifndef MIN_VERSION_text_format_simple
+#define MIN_VERSION_text_format_simple(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  1 || \
+  (major1) == 1 && (major2) == 1 && (minor) <= 0)
+#endif /* MIN_VERSION_text_format_simple */
+
 /* package time-1.9.3 */
 #ifndef VERSION_time
 #define VERSION_time "1.9.3"

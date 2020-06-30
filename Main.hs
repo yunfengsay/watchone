@@ -16,6 +16,10 @@ import           Network.Socket
 import           Network.Socket.ByteString (recv, sendAll)
 import           Prelude                   as P
 import           Text.RawString.QQ
+import Data.Text (Text)
+import qualified Data.Text.Lazy.IO as TLIO
+import Text.Format
+
 main :: IO ()
 main = runTCPServer Nothing "8000" talk
 	where
@@ -26,7 +30,18 @@ main = runTCPServer Nothing "8000" talk
 			unless (S.null msg) $ do
 				let body = "<html><head><title>Hello World</title></head><h1>Hello World</h1></html>"
 				let len =show $ P.length  body
-				let res = BLU.fromString $ [r|
+				let alls = [r|
+				HTTP/1.1 200 OK
+				Accept-Ranges: bytes
+				Content-Length: 75
+				Content-Type: text/html
+				Etag: "q99ylbk"
+				Last-Modified: Fri, 24 Apr 2020 04:17:35 GMT
+				Server: Caddy
+				Date: Tue, 30 Jun 2020 05:57:32 GMT
+				
+				<html><head><title>Hello World</title></head><h1>Hello World</h1></html> |] 
+				let res = BLU.fromString  [r|
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
 Content-Length: 75
@@ -36,8 +51,7 @@ Last-Modified: Fri, 24 Apr 2020 04:17:35 GMT
 Server: Caddy
 Date: Tue, 30 Jun 2020 05:57:32 GMT
 
-<html><head><title>Hello World</title></head><h1>Hello World</h1></html>
-				|]
+<html><head><title>Hello World</title></head><h1>Hello World</h1></html> |] 
 				putStrLn $ show $ getRange 100 res
 				sendAll s res
 				-- talk s

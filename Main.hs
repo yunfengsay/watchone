@@ -16,7 +16,6 @@ import           Network.Socket
 import           Network.Socket.ByteString (recv, sendAll)
 import           Prelude                   as P
 import           Text.RawString.QQ
-import Data.Text (Text)
 import qualified Data.Text.Lazy.IO as TLIO
 import Text.Format
 
@@ -31,17 +30,6 @@ main = runTCPServer Nothing "8000" talk
 				let body = "<html><head><title>Hello World</title></head><h1>Hello World</h1></html>"
 				let len =show $ P.length  body
 				let alls = [r|
-				HTTP/1.1 200 OK
-				Accept-Ranges: bytes
-				Content-Length: 75
-				Content-Type: text/html
-				Etag: "q99ylbk"
-				Last-Modified: Fri, 24 Apr 2020 04:17:35 GMT
-				Server: Caddy
-				Date: Tue, 30 Jun 2020 05:57:32 GMT
-				
-				<html><head><title>Hello World</title></head><h1>Hello World</h1></html> |] 
-				let res = BLU.fromString  [r|
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
 Content-Length: 75
@@ -52,7 +40,21 @@ Server: Caddy
 Date: Tue, 30 Jun 2020 05:57:32 GMT
 
 <html><head><title>Hello World</title></head><h1>Hello World</h1></html> |] 
-				putStrLn $ show $ getRange 100 res
+				let res = BLU.fromString  [r|
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
+Connection: keep-alive
+Content-Length: 75
+Content-Type: text/html
+Date: Tue, 30 Jun 2020 07:06:39 GMT
+Etag: "575e1f60-115"
+Last-Modified: Mon, 13 Jun 2016 02:50:08 GMT
+Pragma: no-cache
+Server: bfe/1.0.8.18
+
+<html><head><title>Hello World</title></head><h1>Hello World</h1></html> |] 
+				putStrLn $ show  res
 				sendAll s res
 				-- talk s
 
